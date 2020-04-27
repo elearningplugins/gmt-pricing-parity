@@ -88,6 +88,12 @@ class Reader
      */
     public function get($ipAddress)
     {
+		
+		if (strpos($ipAddress, ',') !== false) {
+			$ips = explode( ',', $ipAddress );
+			$ipAddress = trim( $ips[0] );
+		}
+
         if (\func_num_args() !== 1) {
             throw new \InvalidArgumentException(
                 'Method takes exactly one argument.'
